@@ -2,6 +2,7 @@
 #include "../Input/Input.h"
 #include "../Scene/SceneManager.h"
 #include "../Scene/Game/Game.h"
+#include "../Scene/Game/GameController.h"
 int Processloop()
 {
 	if (ScreenFlip() != 0) return -1;
@@ -12,16 +13,13 @@ int Processloop()
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	constexpr int
-	SCREEN_WIDIH = 1280,
-	SCREEN_HEIGHT = 720;
-
+	
 	//ログ消し
 	SetOutApplicationLogValidFlag(FALSE);
 	//ウインドウタイトルを変更
 	SetMainWindowText("Avoid");
 	//画面サイズ変更
-	SetGraphMode(SCREEN_WIDIH, SCREEN_HEIGHT, 32);
+	SetGraphMode(GameController::Disp_Widih(), GameController::Disp_Height(), 32);
 	//ウィンドウモード変更と初期化と裏画面設定
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
 	auto manager = SceneManeger::GetInstance();

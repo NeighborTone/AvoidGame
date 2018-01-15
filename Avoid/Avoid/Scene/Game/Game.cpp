@@ -8,12 +8,12 @@ bool Game::Initialize()
 
 void Game::Update()
 {
-
+	controller.Updata();
 }
 
 void Game::Draw()
 {
-	
+	controller.Draw();
 }
 
 void Game::Finalize()
