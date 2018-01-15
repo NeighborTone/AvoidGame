@@ -23,6 +23,5 @@ public:
 	}cloud;
 	BackGround();
 	~BackGround();
-	void Updata();
 	void Draw();
 };

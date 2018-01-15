@@ -21,7 +21,6 @@ int GameController::Disp_Height()
 
 void GameController::Updata()
 {
-	back.Updata();
 	player.Updata();
 }
 
