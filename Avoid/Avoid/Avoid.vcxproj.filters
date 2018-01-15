@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Collision\Collision.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\Figure.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Move\Move.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDxSound\My_DxSound.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Game\Game.cpp">
+      <Filter>Scene\Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Collision\Collision.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Easing\easing.hpp">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\Figure.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Input.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Move\Move.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDxSound\My_DxSound.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Game\Game.h">
+      <Filter>Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MyClass">
+      <UniqueIdentifier>{9c4994da-0d48-460e-8007-1d24542fdef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{1b2df113-7344-442a-9846-7dc24765bce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Game">
+      <UniqueIdentifier>{4010f07d-98b5-450e-a9f4-ccc5b6ab968f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Manager">
+      <UniqueIdentifier>{b4d6b1e9-9bc3-47f6-a60d-d9fc93f8c1e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
