@@ -3,7 +3,7 @@
 #include "../Scene/SceneManager.h"
 #include "../Scene/Game/Game.h"
 #include "../Scene/Game/GameController.h"
-int Processloop()
+int SystemCheck()
 {
 	if (ScreenFlip() != 0) return -1;
 	if (ProcessMessage() != 0) return -1;
@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	manager->PushScene(new Game);
 
-	while (Processloop() == 0 && !manager->isEmpty())
+	while (SystemCheck() == 0 && !manager->isEmpty())
 	{
 		Updata_Key();
 		manager->GetCurrentScene()->Update();

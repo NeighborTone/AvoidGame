@@ -339,8 +339,26 @@ void Move::BackScroll(int dir, float& startx, float& starty, float end, float sp
 		}
 	}
 }
-
-void Move::L_R_Move(float&x, float speed)
+void Move::CheckDisp(POS& p, const int dispW, const int dispH, float help)
+{
+	if (p.x < dispW - dispW + help)
+	{
+		p.x = dispW - dispW + help;
+	}
+	if (p.x > dispW - help)
+	{
+		p.x = dispW - help;
+	}
+	if (p.y < dispH - dispH + help)
+	{
+		p.y = dispH - dispH + help;
+	}
+	if (p.y > dispH - help)
+	{
+		p.y = dispH - help;
+	}
+}
+void Move::L_R_Move(float& x, float speed)
 {
 	x += speed;
 }
