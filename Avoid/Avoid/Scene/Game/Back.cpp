@@ -13,7 +13,7 @@ void BackGround::Draw()
 {
 
 	DrawGraphF(sky.pos.x, sky.pos.y, sky.handle, true);
-	cloud.move.BackScroll(1, cloud.pos, 640, -1.7f, cloud.handle);
+	cloud.move.BackScroll(1, cloud.pos, 640, -0.7f, cloud.handle);
 	DrawGraphF(mountain.pos.x, mountain.pos.y, mountain.handle, true);
 	
 }

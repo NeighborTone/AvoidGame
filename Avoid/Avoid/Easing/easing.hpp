@@ -4,9 +4,11 @@
 class Easing
 {
 private:
+	float start;
+	float end;
 	float cnt;
 public:
-	Easing() { cnt = 0; };
+	Easing() { cnt = 0, start = 0, end = 0; };
 	//イージング用カウンタ
 	float Time(float duration)
 	{
@@ -16,7 +18,26 @@ public:
 		}
 		return cnt;
 	}
-
+	void SetStart(float start)
+	{
+		this->start = start;
+	}
+	void SetEnd(float end)
+	{
+		this->end = end;
+	}
+	float Start()
+	{
+		return this->start;
+	}
+	float End()
+	{
+		return this->end;
+	}
+	float End(float end)
+	{
+		return end - this->start;
+	}
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Linear
 	{

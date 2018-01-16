@@ -21,14 +21,22 @@ int GameController::Disp_Height()
 
 void GameController::Update()
 {
-	blocks.Update();
+	
 	player.Update();
-	if (collision.CircleAndBox(player.body, blocks.under.hit) ||
-		collision.CircleAndBox(player.body,blocks.bar.bottomHit) ||
-		collision.CircleAndBox(player.body, blocks.bar.topHit))
+	for (unsigned i = 0; i < blocks.bar.size();++i)
 	{
-		player.Dead();
+		if (collision.CircleAndBox(player.body, blocks.under.hit) ||
+			collision.CircleAndBox(player.body, blocks.bar[i].bottomHit) ||
+			collision.CircleAndBox(player.body, blocks.bar[i].topHit))
+		{
+			player.Dead();
+		}
 	}
+	if (!player.IsDead())
+	{
+		blocks.Update();
+	}
+	
 }
 
 void GameController::Draw()
