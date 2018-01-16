@@ -19,14 +19,22 @@ int GameController::Disp_Height()
 }
 
 
-void GameController::Updata()
+void GameController::Update()
 {
-	player.Updata();
+	blocks.Update();
+	player.Update();
+	if (collision.CircleAndBox(player.body, blocks.under.hit) ||
+		collision.CircleAndBox(player.body,blocks.bar.bottomHit) ||
+		collision.CircleAndBox(player.body, blocks.bar.topHit))
+	{
+		player.Dead();
+	}
 }
 
 void GameController::Draw()
 {
 	back.Draw();
+	blocks.Draw();
 	player.Draw();
 
 }

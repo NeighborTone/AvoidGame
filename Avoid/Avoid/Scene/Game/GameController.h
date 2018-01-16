@@ -2,16 +2,18 @@
 #include "../Game/Player.h"
 #include "../Collision/Collision.h"
 #include "../Scene/Game/Back.h"
-//ゲームオブジェクト管理
+#include "Block.h"
+//ゲームオブジェクト管理,ここに記述
 class GameController
 {
 private:
 	static int SCREEN_WIDIH,		//ゲームの情報は常に保持する
-				   SCREEN_HEIGHT;
+				 SCREEN_HEIGHT;
 	int score;
 public:
 	
 	Player player;
+	Blocks blocks;
 	Collision collision;
 	BackGround back;
 	GameController();
@@ -19,6 +21,6 @@ public:
 	static  int Disp_Height();
 	void AddScore(int score) { this->score += score; };
 	int  GetScore() { return score; };
-	void Updata();
+	void Update();
 	void Draw();
 };

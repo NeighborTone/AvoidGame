@@ -5,7 +5,7 @@ BackGround::BackGround()
 	sky.handle = LoadGraph("./resource/Graph/Sky.png");
 	sky.pos.SetPos(0, 0);
 	mountain.handle = LoadGraph("./resource/Graph/Mountain.png");
-	mountain.pos.SetPos(0, 150);
+	mountain.pos.SetPos(0, 220);
 	cloud.handle = LoadGraph("./resource/Graph/cloud.png");
 	cloud.pos.SetPos(0, 0);
 }

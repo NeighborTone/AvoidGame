@@ -58,7 +58,7 @@ bool Collision::CircleAndBox(const C& c, const B& b)
 
 }
 
-bool Collision::Box(const B& b1, const B& b2)
+bool Collision::BoxAndBox(const B& b1, const B& b2)
 {
 	if (b1.x < b2.x + b2.w &&
 		b2.x < b1.x + b1.w &&
@@ -70,7 +70,7 @@ bool Collision::Box(const B& b1, const B& b2)
 	return false;
 }
 
-bool Collision::Circle(const C& c1, const C& c2)
+bool Collision::CircleAndCircle(const C& c1, const C& c2)
 {
 	if (((c1.pos.x - c2.pos.x) *(c1.pos.x - c2.pos.x)) + ((c1.pos.y - c2.pos.y) * (c1.pos.y - c2.pos.y)) <= (c1.r + c2.r) * (c1.r + c2.r))
 	{
@@ -102,7 +102,7 @@ bool Collision::BoxAndSlope(const B& b, const L& l)
 		return false;
 }
 
-bool Collision::Line(const L& l1, const L& l2)
+bool Collision::LineAndLine(const L& l1, const L& l2)
 {
 	{
 		const float baseX = l2.p2.x - l2.p1.x;
@@ -215,25 +215,25 @@ bool Collision::CirecleAndLine(const C& c, const L& l)
 
 bool Collision::BoxAndLine(const B& b, const L& l)
 {
-	//四角形を線分で判定
-	L L_U(b.x, b.y, b.x, b.y + b.h);						//左上~左下
+	//四角形を線分で定義
+	L L_U(b.x, b.y, b.x, b.y + b.h);							//左上~左下
 	L R_U(b.x + b.w, b.y, b.x + b.w, b.y + b.h);		//右上~右下
-	L L_D(b.x, b.y, b.x + b.w, b.y);						//左上~右上
+	L L_D(b.x, b.y, b.x + b.w, b.y);							//左上~右上
 	L R_D(b.x, b.y + b.h, b.x + b.w, b.y + b.h);		//左下~右下
 	
-	if (Line(L_U, l))
+	if (LineAndLine(L_U, l))
 	{
 		return true;
 	}
-	if (Line(R_U, l))
+	if (LineAndLine(R_U, l))
 	{
 		return true;
 	}
-	if (Line(L_D, l))
+	if (LineAndLine(L_D, l))
 	{
 		return true;
 	}
-	if (Line(R_D, l))
+	if (LineAndLine(R_D, l))
 	{
 		return true;
 	}
@@ -244,19 +244,19 @@ bool Collision::BoxAndLine(const B& b, const L& l)
 bool  Collision::TriangleAndLine(const T& t, const L& l)
 {
 	//三角形を線分で判定
-	L T_R(t.p1.x, t.p1.y, t.p2.x, t.p2.y);		//上から右下
+	L T_R(t.p1.x, t.p1.y, t.p2.x, t.p2.y);	//上から右下
 	L T_L(t.p1.x, t.p1.y, t.p3.x, t.p3.y);		//上から左下
 	L L_R(t.p2.x, t.p2.y, t.p3.x, t.p3.y);		//底辺
 
-	if (Line(T_R, l))
+	if (LineAndLine(T_R, l))
 	{
 		return true;
 	}
-	if (Line(T_L, l))
+	if (LineAndLine(T_L, l))
 	{
 		return true;
 	}
-	if (Line(L_R, l))
+	if (LineAndLine(L_R, l))
 	{
 		return true;
 	}

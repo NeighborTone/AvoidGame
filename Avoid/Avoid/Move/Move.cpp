@@ -243,7 +243,7 @@ void Move::Rotation(const POS p1, POS &p2)
 void Move::BackScroll(int dir,POS& start, float end, float speed,int handle)
 {
 	//縦方向スクロール
-	if (dir == portrait)
+	if (dir == Up_Down)
 	{
 		start.y += speed;
 		if (speed > 0)
@@ -288,4 +288,59 @@ void Move::BackScroll(int dir,POS& start, float end, float speed,int handle)
 			DrawGraphF(start.x - end, start.y, handle, true);
 		}
 	}
+}
+
+void Move::BackScroll(int dir, float& startx, float& starty, float end, float speed, int handle)
+{
+	//縦方向スクロール
+	if (dir == Up_Down)
+	{
+		starty += speed;
+		if (speed > 0)
+		{
+			if (starty >= end)
+			{
+				starty = 0;
+			}
+			DrawGraphF(startx, starty, handle, true);
+			DrawGraphF(startx, starty - end, handle, true);
+		}
+		if (speed < 0)
+		{
+			if (starty <= -end)
+			{
+				starty = 0;
+			}
+			DrawGraphF(startx, starty, handle, true);
+			DrawGraphF(startx, starty + end, handle, true);
+		}
+	}
+	//横方向スクロール
+	if (dir == sideways)
+	{
+		startx += speed;
+		if (speed < 0)
+		{
+			if (startx <= -end)
+			{
+				startx = 0;
+			}
+			DrawGraphF(startx, starty, handle, true);
+			DrawGraphF(startx + end, starty, handle, true);
+		}
+		if (speed > 0)
+		{
+			if (startx >= end)
+			{
+				startx = 0;
+			}
+			DrawGraphF(startx, starty, handle, true);
+			DrawGraphF(startx - end, starty, handle, true);
+		}
+	}
+}
+
+void Move::L_R_Move(float&x, float speed)
+{
+	x += speed;
 }

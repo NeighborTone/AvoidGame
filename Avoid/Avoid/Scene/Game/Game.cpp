@@ -8,7 +8,7 @@ bool Game::Initialize()
 
 void Game::Update()
 {
-	controller.Updata();
+	controller.Update();
 }
 
 void Game::Draw()
