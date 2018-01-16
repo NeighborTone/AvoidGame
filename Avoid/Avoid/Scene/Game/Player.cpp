@@ -7,7 +7,7 @@ Player::Player()
 	body.SetCircle(100, 100, 5, Cyan);
 }
 
-void Player::Update()
+bool Player::Update()
 {
 	if (!isDead)
 	{
@@ -19,7 +19,13 @@ void Player::Update()
 	else
 	{ 
 		body.pos.y = ease.back.In(ease.Time(10), ease.Start(), ease.End(), 10);
+		if (body.pos.y >= ease.End())
+		{
+			return true;
+		}
 	}
+	
+	return false;
 }
 void Player::Dead()
 {

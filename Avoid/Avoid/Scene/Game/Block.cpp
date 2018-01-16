@@ -24,7 +24,7 @@ Blocks::Blocks()
 		bar[i].SetBar();
 		bar[i].bottomHit.x += i * interval;
 		bar[i].topHit.x += i * interval;
-		bar[i].speed = -5;
+		bar[i].speed = -3;
 	}
 	
 }

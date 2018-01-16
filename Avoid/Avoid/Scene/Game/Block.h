@@ -10,7 +10,7 @@ public:
 	{
 		Box hit;			//あたり判定用矩形
 		Box draw;		//描画用矩形
-		Move move;	//スクロール
+		Move move;		//スクロール
 		int handle;
 	} under;
 	struct Bar
@@ -27,5 +27,5 @@ public:
 	std::array<Bar,4> bar;
 	Blocks();
 	void Update();		//全てのあたり判定を持ったオブジェクトの更新処理
-	void Draw();			//全てのあたり判定を持ったオブジェクトの描画処理
+	void Draw();		//全てのあたり判定を持ったオブジェクトの描画処理
 };

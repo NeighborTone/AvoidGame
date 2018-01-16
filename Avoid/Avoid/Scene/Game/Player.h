@@ -14,6 +14,6 @@ public:
 	~Player() {};		//解放処理
 	void Dead();		//Playerを殺す
 	bool IsDead();		//プレイヤーの状態チェック
-	void Update();		//更新。主に移動系
+	bool Update();		//更新。主に移動系
 	void Draw();		//描画
 };

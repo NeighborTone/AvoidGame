@@ -2,6 +2,7 @@
 #include "../Scene/Scene.h"
 #include "../Game/GameController.h"
 #include "Player.h"
+//‚±‚±‚ÍƒV[ƒ“‚¾‚¯‚ğˆµ‚¤‚±‚Æ‚É‚·‚é
 class Game : public Scene
 {
 public:

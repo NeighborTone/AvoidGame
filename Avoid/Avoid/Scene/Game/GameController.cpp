@@ -7,6 +7,7 @@ GameController::GameController()
 	SCREEN_WIDIH = 640;
 	SCREEN_HEIGHT = 480;
 	score = 0;
+	GameOver = false;
 };
 int GameController::Disp_Widih()
 {
@@ -18,11 +19,17 @@ int GameController::Disp_Height()
 	return SCREEN_HEIGHT;
 }
 
-
+bool GameController::GameEnd()
+{
+	if (GameOver)
+	{
+		return true;
+	}
+	return false;
+}
 void GameController::Update()
 {
 	
-	player.Update();
 	for (unsigned i = 0; i < blocks.bar.size();++i)
 	{
 		if (collision.CircleAndBox(player.body, blocks.under.hit) ||
@@ -35,6 +42,10 @@ void GameController::Update()
 	if (!player.IsDead())
 	{
 		blocks.Update();
+	}
+	if(player.Update())
+	{
+		GameOver = true;
 	}
 	
 }
