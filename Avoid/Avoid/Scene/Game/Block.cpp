@@ -2,6 +2,15 @@
 #include "DxLib.h"
 #include <random>
 
+Obstacle::Bar::Bar()
+{
+	handle = LoadGraph("./resource/Graph/Bar2.png");
+}
+Obstacle::Ice::Ice()
+{
+	alpha = 0;
+	handle = LoadGraph("./resource/Graph/Ice.png");
+}
 void Obstacle::Bar::SetBar()
 {
 	//呼び出されたらランダムな高さで配置
@@ -9,20 +18,29 @@ void Obstacle::Bar::SetBar()
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<> b_rand(240,380);
 	std::uniform_int_distribution<> t_rand(-400, -270);
-	bottomHit.SetBox(750.f, float(b_rand(mt)), 30.f, 480.f, Violet);		//0~480の間にランダムで配置
-	topHit.SetBox(750.f, float(t_rand(mt)), 30.f, 480.f, Violet);
+	bottomHit.SetBox(750.f, float(b_rand(mt)), 32.f, 478.f, Violet);		//0~480の間にランダムで配置
+	topHit.SetBox(750.f, float(t_rand(mt)), 32.f, 478.f, Violet);
 }
 void Obstacle::Ice::SetIce(const POS player)
 {
 	//呼び出されたらプレイヤーの頭上に配置
 	tri.p3.x = player.x;
 	tri.p3.y = 0;
-	tri.p2.x = tri.p3.x + 50;
-	tri.p2.y = tri.p3.y - 300;
+	tri.p2.x = tri.p3.x + 20;
+	tri.p2.y = tri.p3.y - 270;
 	tri.p1.x = tri.p3.x - 50;
-	tri.p1.y = tri.p3.y - 300;
+	tri.p1.y = tri.p3.y - 270;
+	fallspeed = 0;
+	alpha = 255;
 	tri.color.SetColor(Green);
 
+}
+void Obstacle::Ice::MoveIce()
+{
+	fallspeed += 0.1567f;
+	tri.p3.y += fallspeed;
+	tri.p2.y += fallspeed;
+	tri.p1.y += fallspeed;
 }
 Obstacle::Obstacle()
 {
@@ -50,25 +68,21 @@ void Obstacle::Update()
 			bar[i].SetBar();
 		}
 	}
-	//ice.tri.p1.y = ice.ease.quart.In(ice.ease.Time(20), 0, 600, 20);
-	//ice.tri.p2.y = ice.ease.quart.In(ice.ease.Time(20), -50, 550, 20);
-	//ice.tri.p3.y = ice.ease.quart.In(ice.ease.Time(20), -50, 550, 20);
-	ice.tri.p3.y += 5;
-	ice.tri.p2.y += 5;
-	ice.tri.p1.y += 5;
+	ice.MoveIce();
 }
 
 void Obstacle::Draw()
 {
-	under.move.BackScroll(1,under.draw.x,under.draw.y,640, -2.7f, under.handle);
-	ice.tri.My_DrawTriangle();
+
+	
 	for (unsigned i = 0; i < bar.size();++i)
 	{
-		bar[i].bottomHit.My_DrawBox();
-		bar[i].topHit.My_DrawBox();
-#if _DEBUG
-		DrawFormatString(0, 0, GetColor(0,0,0), "%.2f", bar[0].topHit.x);
-		DrawFormatString(0, 15, GetColor(0,0,0), "%.2f", bar[3].topHit.x);
-#endif]
+		DrawGraphF(bar[i].bottomHit.x, bar[i].bottomHit.y, bar[i].handle, true);
+		DrawGraphF(bar[i].topHit.x, bar[i].topHit.y, bar[i].handle, true);
 	}
+	//ice.tri.My_DrawTriangle(false);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, ice.alpha);
+	DrawGraphF(ice.tri.p1.x, ice.tri.p1.y, ice.handle, true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	under.move.BackScroll(1, under.draw.x, under.draw.y, 640, -2.7f, under.handle);
 }

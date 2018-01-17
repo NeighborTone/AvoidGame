@@ -358,7 +358,3 @@ void Move::CheckDisp(POS& p, const int dispW, const int dispH, float help)
 		p.y = dispH - help;
 	}
 }
-void Move::L_R_Move(float& x, float speed)
-{
-	x += speed;
-}

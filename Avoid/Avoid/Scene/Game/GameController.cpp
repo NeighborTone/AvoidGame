@@ -1,13 +1,9 @@
 #include "GameController.h"
 
-int GameController::SCREEN_WIDIH;
-int GameController::SCREEN_HEIGHT;
+
 GameController::GameController()
 {
-	SCREEN_WIDIH = 640;
-	SCREEN_HEIGHT = 480;
-	score = 0;
-	GameOver = false;
+	state = Ready;
 };
 int GameController::Disp_Widih()
 {
@@ -19,45 +15,78 @@ int GameController::Disp_Height()
 	return SCREEN_HEIGHT;
 }
 
+GameController::State GameController::GameCheck()
+{
+	return state;
+}
+void GameController::GameStart()
+{
+	if (state == Ready && Key(KEY_INPUT_Z) == 1)
+	{
+		ui.logo.Hide();
+		state = Play;
+	}
+}
 bool GameController::GameEnd()
 {
-	if (GameOver)
+	if (state == GameOver)
 	{
 		return true;
 	}
 	return false;
 }
-void GameController::Update()
+
+bool GameController::HitCheck()
 {
-	
 	for (unsigned i = 0; i < obstacle.bar.size();++i)
 	{
 		const bool isHitUnder = collision.CircleAndBox(player.body, obstacle.under.hit);
 		const bool isHitBarbottom = collision.CircleAndBox(player.body, obstacle.bar[i].bottomHit);
 		const bool isHitBartop = collision.CircleAndBox(player.body, obstacle.bar[i].topHit);
-		const bool isIce = collision.CircleAndTriangle(player.body, obstacle.ice.tri);
-		if (isHitUnder || isHitBarbottom || isHitBartop || isIce)
+		const bool isHitIce = collision.CircleAndTriangle(player.body, obstacle.ice.tri);
+		if (isHitUnder || isHitBarbottom || isHitBartop || isHitIce)
 		{
-			player.Dead();
+			return true;
 		}
 	}
-	if (!player.IsDead())
+	return false;
+}
+void GameController::Update()
+{
+	GameStart();
+	if (GameCheck() == Play)
 	{
-		obstacle.Update();
-		if(obstacle.ice.tri.p3.y >= 600)
-		obstacle.ice.SetIce(player.body.pos);
+		for (unsigned i = 0; i < obstacle.bar.size();++i)
+		{
+			
+			if (HitCheck())
+			{
+				player.Dead();
+			}
+		}
+		if (!player.IsDead())
+		{
+			obstacle.Update();
+			//‚±‚±‚ÍÝŒvƒ~ƒX
+			if (obstacle.ice.tri.p1.y >= 600)
+				obstacle.ice.SetIce(player.GetPos());
+			
+		}
+		if (player.IsUpdate())
+		{
+			state = GameOver;
+		}
 	}
-	if(player.IsUpdate())
-	{
-		GameOver = true;
-	}
+	
 	
 }
 
 void GameController::Draw()
 {
+	
 	back.Draw();
 	obstacle.Draw();
 	player.Draw();
+	ui.Draw();
 
 }

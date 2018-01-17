@@ -130,6 +130,7 @@
     <ClCompile Include="Scene\Game\Game.cpp" />
     <ClCompile Include="Scene\Game\GameController.cpp" />
     <ClCompile Include="Scene\Game\Player.cpp" />
+    <ClCompile Include="Scene\Game\UI.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Scene\Game\Game.h" />
     <ClInclude Include="Scene\Game\GameController.h" />
     <ClInclude Include="Scene\Game\Player.h" />
+    <ClInclude Include="Scene\Game\UI.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>

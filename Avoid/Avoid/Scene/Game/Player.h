@@ -6,6 +6,7 @@ class Player
 {
 private:
 	bool isDead;
+	int handle;
 public:
 	Circle body;
 	Move move;

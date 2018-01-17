@@ -3,6 +3,8 @@
 #include "../Easing/easing.hpp"
 #include <iostream>
 #include <array>
+
+/*ゲーム内の当たり判定を持った障害物*/
 class Obstacle
 {
 public:
@@ -14,24 +16,30 @@ public:
 		Move move;		//スクロール
 		int handle;
 	} under;
-	struct Bar
+	struct Bar					//上下のバー
 	{
 		Box bottomHit;			//下のあたり判定
 		Box topHit;				//上のあたり判定
 		Move move;
 		int handle;
 		float speed;
+		Bar();
 		void SetBar();		//ランダムに配置されるバーの初期位置を設定する
-
+		
 	};
 	std::array<Bar,4> bar;
-	struct Ice
+	struct Ice					//上から落ちるつらら
 	{
 		Triangle tri;
-		Easing ease;
-		void SetIce(const POS player = 0);
+		int handle;
+		float fallspeed;
+		int alpha;
+		Ice();
+		void MoveIce();
+		void SetIce(const POS player);
 	} ice;
 	Obstacle();
-	void Update();		//全てのあたり判定を持ったオブジェクトの更新処理
-	void Draw();		//全てのあたり判定を持ったオブジェクトの描画処理
+	~Obstacle() { InitGraph(); };
+	void Update();		
+	void Draw();		
 };

@@ -14,7 +14,7 @@ bool Player::IsUpdate()
 		move.InputArrowLR(body.pos.x, 5);
 		move.InputFly(body.pos.y, -3);
 		ease.SetStart(body.pos.y);
-		move.CheckDisp(body.pos, 640, 480, body.r);
+		move.CheckDisp(body.pos, GameController::Disp_Widih(), GameController::Disp_Height(), body.r);
 	}
 	else
 	{ 

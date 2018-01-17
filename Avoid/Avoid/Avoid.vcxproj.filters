@@ -35,6 +35,9 @@
     <ClCompile Include="Scene\Game\Block.cpp">
       <Filter>Scene\Game\GameController\Blocks</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Game\UI.cpp">
+      <Filter>Scene\Game\GameController\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision\Collision.h">
@@ -76,6 +79,9 @@
     <ClInclude Include="Scene\Game\Block.h">
       <Filter>Scene\Game\GameController\Blocks</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Game\UI.h">
+      <Filter>Scene\Game\GameController\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MyClass">
@@ -101,6 +107,9 @@
     </Filter>
     <Filter Include="Scene\Game\GameController\Player">
       <UniqueIdentifier>{7181f8b3-0bd8-4897-a637-9a817ce3a55e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Game\GameController\UI">
+      <UniqueIdentifier>{71c9c535-a802-4c9c-9f03-7c44bfc13266}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
