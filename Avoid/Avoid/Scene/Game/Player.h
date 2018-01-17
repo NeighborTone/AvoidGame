@@ -10,10 +10,11 @@ public:
 	Circle body;
 	Move move;
 	Easing ease;
-	Player();			//初期化
-	~Player() {};		//解放処理
-	void Dead();		//Playerを殺す
+	Player();				//初期化
+	~Player() {};			//解放処理
+	void Dead();			//Playerを殺す
+	POS GetPos() { return body.pos; }
 	bool IsDead();		//プレイヤーの状態チェック
-	bool Update();		//更新。主に移動系
-	void Draw();		//描画
+	bool IsUpdate();		//更新。主に移動系
+	void Draw();			//描画
 };

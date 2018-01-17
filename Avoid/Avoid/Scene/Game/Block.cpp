@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include <random>
 
-void Blocks::Bar::SetBar()
+void Obstacle::Bar::SetBar()
 {
 	//呼び出されたらランダムな高さで配置
 	std::random_device rnd;
@@ -12,15 +12,25 @@ void Blocks::Bar::SetBar()
 	bottomHit.SetBox(750.f, float(b_rand(mt)), 30.f, 480.f, Violet);		//0~480の間にランダムで配置
 	topHit.SetBox(750.f, float(t_rand(mt)), 30.f, 480.f, Violet);
 }
+void Obstacle::Ice::SetIce(const POS player)
+{
+	//呼び出されたらプレイヤーの頭上に配置
+	tri.p3.x = player.x;
+	tri.p3.y = 0;
+	tri.p2.x = tri.p3.x + 50;
+	tri.p2.y = tri.p3.y - 300;
+	tri.p1.x = tri.p3.x - 50;
+	tri.p1.y = tri.p3.y - 300;
+	tri.color.SetColor(Green);
 
-Blocks::Blocks()
+}
+Obstacle::Obstacle()
 {
 	under.handle = LoadGraph("./resource/Graph/Under.png");
 	under.draw.SetBox(0, 390,640, 90, Blue);
 	under.hit.SetBox(0, 390, 640, 90, Blue);
 	for (unsigned i = 0; i < bar.size();++i)
 	{
-		
 		bar[i].SetBar();
 		bar[i].bottomHit.x += i * interval;
 		bar[i].topHit.x += i * interval;
@@ -29,7 +39,7 @@ Blocks::Blocks()
 	
 }
 
-void Blocks::Update()
+void Obstacle::Update()
 {
 	for (unsigned i = 0; i < bar.size();++i)
 	{
@@ -40,12 +50,18 @@ void Blocks::Update()
 			bar[i].SetBar();
 		}
 	}
-	
+	//ice.tri.p1.y = ice.ease.quart.In(ice.ease.Time(20), 0, 600, 20);
+	//ice.tri.p2.y = ice.ease.quart.In(ice.ease.Time(20), -50, 550, 20);
+	//ice.tri.p3.y = ice.ease.quart.In(ice.ease.Time(20), -50, 550, 20);
+	ice.tri.p3.y += 5;
+	ice.tri.p2.y += 5;
+	ice.tri.p1.y += 5;
 }
 
-void Blocks::Draw()
+void Obstacle::Draw()
 {
 	under.move.BackScroll(1,under.draw.x,under.draw.y,640, -2.7f, under.handle);
+	ice.tri.My_DrawTriangle();
 	for (unsigned i = 0; i < bar.size();++i)
 	{
 		bar[i].bottomHit.My_DrawBox();

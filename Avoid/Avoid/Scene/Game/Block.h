@@ -1,8 +1,9 @@
 #include "../Figure/Figure.h"
 #include "../Move/Move.h"
+#include "../Easing/easing.hpp"
 #include <iostream>
 #include <array>
-class Blocks
+class Obstacle
 {
 public:
 	enum{interval = 250};
@@ -15,7 +16,6 @@ public:
 	} under;
 	struct Bar
 	{
-		
 		Box bottomHit;			//下のあたり判定
 		Box topHit;				//上のあたり判定
 		Move move;
@@ -25,7 +25,13 @@ public:
 
 	};
 	std::array<Bar,4> bar;
-	Blocks();
+	struct Ice
+	{
+		Triangle tri;
+		Easing ease;
+		void SetIce(const POS player = 0);
+	} ice;
+	Obstacle();
 	void Update();		//全てのあたり判定を持ったオブジェクトの更新処理
 	void Draw();		//全てのあたり判定を持ったオブジェクトの描画処理
 };

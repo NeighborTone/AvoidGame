@@ -13,7 +13,7 @@ private:
 	bool GameOver;
 public:
 	Player player;
-	Blocks blocks;
+	Obstacle obstacle;
 	Collision collision;
 	BackGround back;
 	GameController();

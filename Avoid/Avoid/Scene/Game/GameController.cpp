@@ -30,20 +30,24 @@ bool GameController::GameEnd()
 void GameController::Update()
 {
 	
-	for (unsigned i = 0; i < blocks.bar.size();++i)
+	for (unsigned i = 0; i < obstacle.bar.size();++i)
 	{
-		if (collision.CircleAndBox(player.body, blocks.under.hit) ||
-			collision.CircleAndBox(player.body, blocks.bar[i].bottomHit) ||
-			collision.CircleAndBox(player.body, blocks.bar[i].topHit))
+		const bool isHitUnder = collision.CircleAndBox(player.body, obstacle.under.hit);
+		const bool isHitBarbottom = collision.CircleAndBox(player.body, obstacle.bar[i].bottomHit);
+		const bool isHitBartop = collision.CircleAndBox(player.body, obstacle.bar[i].topHit);
+		const bool isIce = collision.CircleAndTriangle(player.body, obstacle.ice.tri);
+		if (isHitUnder || isHitBarbottom || isHitBartop || isIce)
 		{
 			player.Dead();
 		}
 	}
 	if (!player.IsDead())
 	{
-		blocks.Update();
+		obstacle.Update();
+		if(obstacle.ice.tri.p3.y >= 600)
+		obstacle.ice.SetIce(player.body.pos);
 	}
-	if(player.Update())
+	if(player.IsUpdate())
 	{
 		GameOver = true;
 	}
@@ -53,7 +57,7 @@ void GameController::Update()
 void GameController::Draw()
 {
 	back.Draw();
-	blocks.Draw();
+	obstacle.Draw();
 	player.Draw();
 
 }

@@ -7,7 +7,7 @@ Player::Player()
 	body.SetCircle(100, 100, 5, Cyan);
 }
 
-bool Player::Update()
+bool Player::IsUpdate()
 {
 	if (!isDead)
 	{
@@ -24,7 +24,6 @@ bool Player::Update()
 			return true;
 		}
 	}
-	
 	return false;
 }
 void Player::Dead()
