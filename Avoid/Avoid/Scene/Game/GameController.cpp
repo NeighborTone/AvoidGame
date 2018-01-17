@@ -3,6 +3,9 @@
 
 GameController::GameController()
 {
+	sound.SetBGM("./resource/Sound/深緑の舞.mp3");
+	sound.SetSE("./resource/Sound/ぼよよんソフト.ogg");
+	ui.retry.Hide();
 	state = Ready;
 };
 int GameController::Disp_Widih()
@@ -46,6 +49,7 @@ bool GameController::HitCheck()
 		const bool isHitIce = collision.CircleAndTriangle(player.body, obstacle.ice.tri);
 		if (isHitUnder || isHitBarbottom || isHitBartop || isHitIce)
 		{
+			sound.PlayOneShotSE(0);
 			return true;
 		}
 	}
@@ -54,6 +58,7 @@ bool GameController::HitCheck()
 void GameController::Update()
 {
 	GameStart();
+	sound.PlayBGM_Loop(70);
 	if (GameCheck() == Play)
 	{
 		for (unsigned i = 0; i < obstacle.bar.size();++i)
@@ -69,16 +74,19 @@ void GameController::Update()
 			obstacle.Update();
 			//ここは設計ミス
 			if (obstacle.ice.tri.p1.y >= 600)
+			{
 				obstacle.ice.SetIce(player.GetPos());
-			
+			}
+			//
 		}
 		if (player.IsUpdate())
 		{
+			ui.retry.Show();
+			sound.DeleteBGM();
+			sound.DeleteSE();
 			state = GameOver;
 		}
 	}
-	
-	
 }
 
 void GameController::Draw()
@@ -89,4 +97,9 @@ void GameController::Draw()
 	player.Draw();
 	ui.Draw();
 
+}
+GameController::~GameController()
+{
+	InitGraph();
+	InitSoundMem();
 }

@@ -8,7 +8,7 @@ Obstacle::Bar::Bar()
 }
 Obstacle::Ice::Ice()
 {
-	alpha = 0;
+	isDraw = false;
 	handle = LoadGraph("./resource/Graph/Ice.png");
 }
 void Obstacle::Bar::SetBar()
@@ -31,7 +31,7 @@ void Obstacle::Ice::SetIce(const POS player)
 	tri.p1.x = tri.p3.x - 50;
 	tri.p1.y = tri.p3.y - 270;
 	fallspeed = 0;
-	alpha = 255;
+	isDraw = true;
 	tri.color.SetColor(Green);
 
 }
@@ -73,16 +73,14 @@ void Obstacle::Update()
 
 void Obstacle::Draw()
 {
-
-	
 	for (unsigned i = 0; i < bar.size();++i)
 	{
 		DrawGraphF(bar[i].bottomHit.x, bar[i].bottomHit.y, bar[i].handle, true);
 		DrawGraphF(bar[i].topHit.x, bar[i].topHit.y, bar[i].handle, true);
 	}
-	//ice.tri.My_DrawTriangle(false);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, ice.alpha);
-	DrawGraphF(ice.tri.p1.x, ice.tri.p1.y, ice.handle, true);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	if (ice.isDraw)
+	{
+		DrawGraphF(ice.tri.p1.x, ice.tri.p1.y, ice.handle, true);
+	}
 	under.move.BackScroll(1, under.draw.x, under.draw.y, 640, -2.7f, under.handle);
 }

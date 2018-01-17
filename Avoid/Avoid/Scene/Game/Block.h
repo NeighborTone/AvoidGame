@@ -33,7 +33,7 @@ public:
 		Triangle tri;
 		int handle;
 		float fallspeed;
-		int alpha;
+		bool isDraw;
 		Ice();
 		void MoveIce();
 		void SetIce(const POS player);
