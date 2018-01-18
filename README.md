@@ -17,3 +17,9 @@
 + 離している間は下降
 
 + ←→キーで移動	
+
+## 制作環境
+
++ VisualStudio2017 C/C++
+
++ 使用外部ライブラリ[DxLib]http://dxlib.o.oo7.jp/
