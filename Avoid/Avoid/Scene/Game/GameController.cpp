@@ -7,6 +7,7 @@ GameController::GameController()
 	sound.SetSE("./resource/Sound/ぼよよんソフト.ogg");
 	ui.retry.Hide();
 	state = Ready;
+	score = 0;
 };
 int GameController::Disp_Widih()
 {
@@ -30,14 +31,6 @@ void GameController::GameStart()
 		state = Play;
 	}
 }
-bool GameController::GameEnd()
-{
-	if (state == GameOver)
-	{
-		return true;
-	}
-	return false;
-}
 
 bool GameController::HitCheck()
 {
@@ -55,7 +48,7 @@ bool GameController::HitCheck()
 	}
 	return false;
 }
-void GameController::Update()
+bool GameController::IsUpdate()
 {
 	GameStart();
 	sound.PlayBGM_Loop(70);
@@ -63,7 +56,6 @@ void GameController::Update()
 	{
 		for (unsigned i = 0; i < obstacle.bar.size();++i)
 		{
-			
 			if (HitCheck())
 			{
 				player.Dead();
@@ -72,12 +64,14 @@ void GameController::Update()
 		if (!player.IsDead())
 		{
 			obstacle.Update();
-			//ここは設計ミス
-			if (obstacle.ice.tri.p1.y >= 600)
+			//ここは設計ミス。実際はobstacle.Update()内で行うようにする
+			const bool icePosCheak = obstacle.ice.tri.p1.y >= 600;
+			if (icePosCheak && CheckScore())
 			{
 				obstacle.ice.SetIce(player.GetPos());
 			}
 			//
+			AddScore();
 		}
 		if (player.IsUpdate())
 		{
@@ -87,16 +81,20 @@ void GameController::Update()
 			state = GameOver;
 		}
 	}
+	if (state == GameOver)
+	{
+		return true;
+	}
+	return false;
 }
 
 void GameController::Draw()
 {
-	
 	back.Draw();
 	obstacle.Draw();
 	player.Draw();
 	ui.Draw();
-
+	DrawFormatString(0, 0, GetColor(0, 0, 0), "%.0f", score);
 }
 GameController::~GameController()
 {

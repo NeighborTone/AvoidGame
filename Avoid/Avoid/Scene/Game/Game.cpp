@@ -10,8 +10,7 @@ bool Game::Initialize()
 
 void Game::Update()
 {
-	controller.Update();
-	if (controller.GameEnd() && Key(KEY_INPUT_Z) == 1)
+	if (controller.IsUpdate() && Key(KEY_INPUT_Z) == 1)
 	{
 		SceneManeger::GetInstance()->ChangeScene(new Game);
 	}

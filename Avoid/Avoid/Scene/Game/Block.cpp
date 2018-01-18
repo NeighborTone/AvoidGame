@@ -2,6 +2,12 @@
 #include "DxLib.h"
 #include <random>
 
+Obstacle::Under::Under()
+{
+	handle = LoadGraph("./resource/Graph/Under.png");
+	draw.SetBox(0, 390, 640, 90, Blue);
+	hit.SetBox(0, 390, 640, 90, Blue);
+}
 Obstacle::Bar::Bar()
 {
 	handle = LoadGraph("./resource/Graph/Bar2.png");
@@ -44,9 +50,7 @@ void Obstacle::Ice::MoveIce()
 }
 Obstacle::Obstacle()
 {
-	under.handle = LoadGraph("./resource/Graph/Under.png");
-	under.draw.SetBox(0, 390,640, 90, Blue);
-	under.hit.SetBox(0, 390, 640, 90, Blue);
+	
 	for (unsigned i = 0; i < bar.size();++i)
 	{
 		bar[i].SetBar();
