@@ -5,8 +5,11 @@
 class Player
 {
 private:
+	enum{MAXANIME=18};
+	float angle;
+	int animcnt;
 	bool isDead;
-	int handle;
+	int handle[12];
 public:
 	Circle body;
 	Move move;

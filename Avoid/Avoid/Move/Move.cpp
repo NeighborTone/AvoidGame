@@ -12,41 +12,41 @@ void Move::InputArrow8(float &x, float &y,float speed)
 		 CheckHitKey(KEY_INPUT_LEFT)  ==  0 ||
 		 CheckHitKey(KEY_INPUT_RIGHT) ==  0)
 	{
-		dir = non;
+		inputDir = non;
 	}
 	if (Key(KEY_INPUT_UP) >= 1)
 	{
-		dir = up;
+		inputDir = up;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1)
 	{
-		dir = down;
+		inputDir = down;
 	}
 	if (Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = left;
+		inputDir = left;
 	}
 	if (Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = right;
+		inputDir = right;
 	}
 	if (Key(KEY_INPUT_UP) >= 1 && Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = up_right;
+		inputDir = up_right;
 	}
 	if (Key(KEY_INPUT_UP) >= 1 && Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = up_left;
+		inputDir = up_left;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1 && Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = down_right;
+		inputDir = down_right;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1 && Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = down_left;
+		inputDir = down_left;
 	}
-	switch (dir)
+	switch (inputDir)
 	{
 	case up:
 		y -= speed;
@@ -77,7 +77,7 @@ void Move::InputArrow8(float &x, float &y,float speed)
 		y += static_cast<float>(sin(M_PI / 180.0f * 45)) * speed;
 		break;
 	default:
-		dir = non;
+		inputDir = non;
 		break;
 	}
 	
@@ -90,41 +90,41 @@ void Move::InputArrow8(POS &p, float speed)
 		CheckHitKey(KEY_INPUT_LEFT)  == 0 ||
 		CheckHitKey(KEY_INPUT_RIGHT) == 0)
 	{
-		dir = non;
+		inputDir = non;
 	}
 	if (Key(KEY_INPUT_UP) >= 1)
 	{
-		dir = up;
+		inputDir = up;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1)
 	{
-		dir = down;
+		inputDir = down;
 	}
 	if (Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = left;
+		inputDir = left;
 	}
 	if (Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = right;
+		inputDir = right;
 	}
 	if (Key(KEY_INPUT_UP) >= 1 && Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = up_right;
+		inputDir = up_right;
 	}
 	if (Key(KEY_INPUT_UP) >= 1 && Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = up_left;
+		inputDir = up_left;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1 && Key(KEY_INPUT_RIGHT) >= 1)
 	{
-		dir = down_right;
+		inputDir = down_right;
 	}
 	if (Key(KEY_INPUT_DOWN) >= 1 && Key(KEY_INPUT_LEFT) >= 1)
 	{
-		dir = down_left;
+		inputDir = down_left;
 	}
-	switch (dir)
+	switch (inputDir)
 	{
 	case up:
 		p.y -= speed;
@@ -155,7 +155,7 @@ void Move::InputArrow8(POS &p, float speed)
 		p.y += static_cast<float>(sin(M_PI / 180.0f * 45)) * speed;
 		break;
 	default:
-		dir = non;
+		inputDir = non;
 		break;
 	}
 }
@@ -164,10 +164,12 @@ void Move::InputArrowLR(float &x, float speed)
 {
 	if (Key(KEY_INPUT_LEFT) >= 1)
 	{
+		dir = LEFT;
 		x -= speed;
 	}
 	if (Key(KEY_INPUT_RIGHT) >= 1)
 	{
+		dir = RIGHT;
 		x += speed;
 	}
 }
@@ -357,4 +359,12 @@ void Move::CheckDisp(POS& p, const int dispW, const int dispH, float help)
 	{
 		p.y = dispH - help;
 	}
+}
+void Move::SetDir(Dir dir)
+{
+	this->dir = dir;
+}
+Move::Dir Move::GetDir()
+{
+	return dir;
 }
