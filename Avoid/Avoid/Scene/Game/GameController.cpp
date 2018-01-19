@@ -72,6 +72,7 @@ bool GameController::IsUpdate()
 		}
 		if (player.IsUpdate())
 		{
+			score.SaveHighScore();
 			ui.retry.Show();
 			sound.DeleteBGM();
 			sound.DeleteSE();
@@ -91,7 +92,7 @@ void GameController::Draw()
 	obstacle.Draw();
 	player.Draw();
 	ui.Draw();
-	DrawFormatString(0, 0, GetColor(50, 10, 180), "Score:%.0f", score.GetScore());
+	score.Draw();
 }
 GameController::~GameController()
 {

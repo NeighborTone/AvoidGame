@@ -3,6 +3,17 @@
 #include "../Scene/SceneManager.h"
 #include "../Scene/Game/Game.h"
 #include "../Scene/Game/GameController.h"
+void message_box() 
+{
+	int flag;
+	flag = MessageBox(
+		NULL,
+		TEXT("フルスクリーンモードで起動しますか？"),
+		TEXT("スクリーン設定"),
+		MB_YESNO | MB_ICONQUESTION);
+	if (flag == IDNO)
+		ChangeWindowMode(TRUE);
+}
 int SystemCheck()
 {
 	if (ScreenFlip() != 0) return -1;
@@ -21,7 +32,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//画面サイズ変更
 	SetGraphMode(GameController::Disp_Widih(), GameController::Disp_Height(), 32);
 	//ウィンドウモード変更と初期化と裏画面設定
-	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
+	message_box(), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
 	auto manager = SceneManeger::GetInstance();
 
 	manager->PushScene(new Game);
@@ -36,7 +47,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			manager->GetCurrentScene()->Finalize();
 			break;
 		}
-	
 	}
 	manager->GetCurrentScene()->Finalize();
 	DxLib_End();
