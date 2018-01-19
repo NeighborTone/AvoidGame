@@ -21,6 +21,9 @@ void Score::ResetHighScore()
 	if (highscore != 0)
 	{
 		highscore = 0;
+		std::ofstream ofs("./resource/Save/ハイスコア.dat");
+		ofs << highscore;
+		ofs.close();
 	}
 }
 void Score::SaveHighScore()

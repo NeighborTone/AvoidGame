@@ -28,6 +28,12 @@ void GameController::GameStart()
 		ui.logo.Hide();
 		state = Play;
 	}
+	if (state == Ready && 
+		Key(KEY_INPUT_R) >= 1 &&
+		Key(KEY_INPUT_E) == 1)
+	{
+		score.ResetHighScore();
+	}
 }
 bool GameController::HitCheck()
 {
