@@ -1,3 +1,5 @@
+# FlyingGhost
+![default](https://user-images.githubusercontent.com/30017323/35159421-8960947c-fd7d-11e7-86fc-cc29f0d1e4e3.PNG)
 # 概要
 
 + 自分で作ったクラスを使ったサンプルゲーム
