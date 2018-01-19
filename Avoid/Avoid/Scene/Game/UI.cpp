@@ -1,13 +1,12 @@
 #include "UI.h"
 UI::UI()
 {
-	logo.handle = LoadGraph("./resource/Graph/push.png");
-	retry.handle = LoadGraph("./resource/Graph/Retry.png");
-	logo.pos.SetPos(230,480/2);
-	retry.pos.SetPos(230, 480 / 2);
+
 }
 UI::Titlelogo::Titlelogo()
 {
+	handle = LoadGraph("./resource/Graph/push.png");
+	pos.SetPos(230, 480 / 2);
 	flag = false;
 }
 void UI::Titlelogo::Hide()
@@ -24,6 +23,8 @@ bool UI::Titlelogo::OnOff()
 }
 UI::Retry::Retry()
 {
+	handle = LoadGraph("./resource/Graph/Retry.png");
+	pos.SetPos(230, 480 / 2);
 	flag = false;
 }
 void UI::Retry::Hide()

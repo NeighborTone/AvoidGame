@@ -5,11 +5,12 @@
 #include "../MyDxSound/My_DxSound.h"
 #include "UI.h"
 #include "Block.h"
+#include "../Game/Score/Score.h"
+#include <stdio.h>
 //ゲームオブジェクト管理
 class GameController
 {
 private:
-	float score;
 	enum
 	{
 		SCREEN_WIDIH = 640,		
@@ -21,6 +22,7 @@ private:
 		Play,
 		GameOver,
 	}state;
+	Score score;
 	Sound sound;
 	UI ui;
 	Player player;
@@ -30,12 +32,6 @@ private:
 	State GameCheck();					//ゲームの状態をチェック	
 	void GameStart();						//Zキーでゲームを開始する
 	bool HitCheck();						//障害物との当たり判定
-	void AddScore() { score += 1.f / 60.f; };	//スコアは秒数
-	bool CheckScore() {
-		if (score >= 51.f)
-			return true;
-		return false;
-	};
 public:
 	GameController();
 	~GameController();

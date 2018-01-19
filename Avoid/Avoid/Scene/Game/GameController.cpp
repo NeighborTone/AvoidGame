@@ -1,13 +1,11 @@
 #include "GameController.h"
 
-
 GameController::GameController()
 {
 	sound.SetBGM("./resource/Sound/深緑の舞.mp3");
 	sound.SetSE("./resource/Sound/ぼよよんソフト.ogg");
 	ui.retry.Hide();
 	state = Ready;
-	score = 0;
 };
 int GameController::Disp_Widih()
 {
@@ -31,7 +29,6 @@ void GameController::GameStart()
 		state = Play;
 	}
 }
-
 bool GameController::HitCheck()
 {
 	for (unsigned i = 0; i < obstacle.bar.size();++i)
@@ -66,12 +63,12 @@ bool GameController::IsUpdate()
 			obstacle.Update();
 			//ここは設計ミス。実際はobstacle.Update()内で行うようにする
 			const bool icePosCheak = obstacle.ice.tri.p1.y >= 600;
-			if (icePosCheak && CheckScore())
+			if (icePosCheak && score.CheckScore())
 			{
 				obstacle.ice.SetIce(player.GetPos());
 			}
 			//
-			AddScore();
+			score.AddScore();
 		}
 		if (player.IsUpdate())
 		{
@@ -94,7 +91,7 @@ void GameController::Draw()
 	obstacle.Draw();
 	player.Draw();
 	ui.Draw();
-	DrawFormatString(0, 0, GetColor(0, 0, 0), "%.0f", score);
+	DrawFormatString(0, 0, GetColor(50, 10, 180), "Score:%.0f", score.GetScore());
 }
 GameController::~GameController()
 {

@@ -27,6 +27,7 @@ public:
 		void Show();
 		bool OnOff();
 	}retry;
+
 	UI();
 	~UI();
 	void Draw();
