@@ -1,6 +1,5 @@
 #include "../Figure/Figure.h"
 #include "../Move/Move.h"
-#include "../Easing/easing.hpp"
 #include <iostream>
 #include <array>
 

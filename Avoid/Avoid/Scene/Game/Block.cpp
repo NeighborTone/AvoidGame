@@ -39,7 +39,6 @@ void Obstacle::Ice::SetIce(const POS player)
 	fallspeed = 0;
 	isDraw = true;
 	tri.color.SetColor(Green);
-
 }
 void Obstacle::Ice::MoveIce()
 {

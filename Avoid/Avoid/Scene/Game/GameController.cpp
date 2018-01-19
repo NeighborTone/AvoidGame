@@ -4,6 +4,7 @@ GameController::GameController()
 {
 	sound.SetBGM("./resource/Sound/[—Î‚Ì•‘.mp3");
 	sound.SetSE("./resource/Sound/‚Ú‚æ‚æ‚ñƒ\ƒtƒg.ogg");
+	sound.SetSE("./resource/Sound/ice01_long.ogg");
 	ui.retry.Hide();
 	state = Ready;
 };
@@ -72,6 +73,7 @@ bool GameController::IsUpdate()
 			if (icePosCheak && score.CheckScore())
 			{
 				obstacle.ice.SetIce(player.GetPos());
+				sound.PlaySE(1,70);
 			}
 			//
 			score.AddScore();

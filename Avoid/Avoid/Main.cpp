@@ -28,7 +28,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//ログ消し
 	SetOutApplicationLogValidFlag(FALSE);
 	//ウインドウタイトルを変更
-	SetMainWindowText("Avoid");
+	SetMainWindowText("FlyingGhost");
 	//画面サイズ変更
 	SetGraphMode(GameController::Disp_Widih(), GameController::Disp_Height(), 32);
 	//ウィンドウモード変更と初期化と裏画面設定
