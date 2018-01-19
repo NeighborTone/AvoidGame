@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//画面サイズ変更
 	SetGraphMode(GameController::Disp_Widih(), GameController::Disp_Height(), 32);
 	//ウィンドウモード変更と初期化と裏画面設定
-	message_box(), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
+	message_box(), SetWindowIconID(222), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
 	auto manager = SceneManeger::GetInstance();
 
 	manager->PushScene(new Game);

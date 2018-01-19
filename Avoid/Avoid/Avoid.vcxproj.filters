@@ -121,4 +121,7 @@
       <UniqueIdentifier>{a70453da-f904-47a3-89ca-8f55f8c7cfb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
 </Project>
